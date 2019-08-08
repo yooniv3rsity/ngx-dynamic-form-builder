@@ -110,7 +110,7 @@
     "conventional-commits-detector": "^1.0.2",
     "conventional-recommended-bump": "^4.1.1",
     "cp-cli": "^2.0.0",
-    "gh-pages": "^2.0.1",
+    "gh-pages": "^2.1.1",
     "html-loader": "^0.5.5",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
