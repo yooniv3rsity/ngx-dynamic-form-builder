@@ -66,16 +66,15 @@ export class DynamicFormBuilder extends FormBuilder {
     // If there is no manual controlsConfig specified, use given factoryModel to create a proto-form-model. 
 
     let newControlsConfig: FormModel<TModel>;
-	if (controlsConfig !== undefined) {
-		newControlsConfig = controlsConfig as FormModel<TModel>;
-	} else {
-		newControlsConfig = { ...this.createEmptyObject(factoryModel) };
-	}
 
-	// console.log('////// newControlsConfig',controlsConfig,newControlsConfig)
-	
+    if (controlsConfig !== undefined) {
+      newControlsConfig = controlsConfig as FormModel<TModel>;
+    }
+
     // experimental
-    if (newControlsConfig) {
+    if (controlsConfig === undefined) {
+      newControlsConfig = { ...this.createEmptyObject(factoryModel) };
+
       Object.keys(newControlsConfig).forEach(key => {
         if (canCreateGroup()) {
           // recursively create a dynamic group for the nested object
