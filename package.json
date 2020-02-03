@@ -59,13 +59,8 @@
     "tslint": "tslint",
     "e2e": "ng e2e",
     "github:prebuild": "ng build demo --base-href /ngx-dynamic-form-builder/ --prod",
-<<<<<<< HEAD
     "github:build": "run-s format:fix lib:build config:prod github:prebuild config:mono lib:build github:postbuild",
     "github:postbuild": "./node_modules/.bin/cp-cli ./dist/demo/index.html ./dist/demo/404.html",
-=======
-    "github:build": "run-s format:fix lib:build config:prod github:prebuild github:postbuild",
-    "github:postbuild": "cp-cli ./dist/demo/index.html ./dist/demo/404.html",
->>>>>>> fix version & scope
     "github:deploy": "gh-pages -d dist/demo",
     "format:fix": "prettier  --config ./.prettierrc --write \"{apps,libs}/**/*.ts\"",
     "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
