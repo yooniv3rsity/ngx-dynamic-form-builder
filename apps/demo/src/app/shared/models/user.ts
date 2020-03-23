@@ -1,5 +1,5 @@
 import { plainToClassFromExist, Transform, Type } from 'class-transformer';
-import { IsEmail, IsNotEmpty, IsOptional, ValidateNested } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsOptional, Matches, ValidateNested } from 'class-validator';
 import { serializeModel, transformDateToString, transformStringToDate } from '../utils/custom-transforms';
 import { Department } from './department';
 
@@ -12,7 +12,8 @@ export class User {
     isStaff: 'Staff',
     email: 'Email',
     department: 'Department',
-    dateOfBirth: 'Date of birth'
+    dateOfBirth: 'Date of birth',
+    abc: 'Only abc field'
   };
 
   id: number;
@@ -20,6 +21,10 @@ export class User {
   @IsNotEmpty()
   username: string;
   password: string;
+
+  // flag "g" in RegExp work incorrect, please read issue: https://github.com/typestack/class-validator/issues/484
+  @Matches(RegExp('^abc$', 'i'), { message: `it should match the cool 'abc' string` })
+  abc: string;
 
   @IsEmail()
   @IsNotEmpty()

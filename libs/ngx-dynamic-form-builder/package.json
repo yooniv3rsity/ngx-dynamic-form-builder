@@ -1,7 +1,7 @@
 {
-  "name": "ngx-dynamic-form-builder",
-  "version": "1.0.0",
-  "description": "FormBuilder + class-transformer + class-validator = dynamic form group builder for Angular7+",
+  "name": "@yoolabs/ngx-dynamic-form-builder",
+  "version": "1.3.0",
+  "description": "FormBuilder + class-transformer + class-validator = dynamic form group builder for Angular9+",
   "keywords": [
     "form-builder",
     "class-transformer",
@@ -19,12 +19,12 @@
     "builder",
     "formarray",
     "angular",
-    "angular7"
+    "angular9"
   ],
   "license": "MIT",
   "author": "EndyKaufman <admin@site15.ru>",
   "engines": {
-    "node": ">=10",
+    "node": ">=12",
     "npm": ">=6.4.0"
   },
   "bugs": {
@@ -42,20 +42,20 @@
     }
   ],
   "peerDependencies": {
-    "rxjs": "^6.5.1",
-    "@angular/forms": "^7.2.14",
-    "@angular/common": "^7.2.14",
-    "@angular/compiler": "^7.2.14",
-    "@angular/core": "^7.2.14",
-    "class-transformer": "^0.2.0",
-    "class-validator": "^0.9.1",
+    "rxjs": "^6.5.4",
+    "@angular/forms": "^9.0.7",
+    "@angular/common": "^9.0.7",
+    "@angular/compiler": "^9.0.7",
+    "@angular/core": "^9.0.7",
+    "class-transformer": "^0.2.3",
+    "class-validator": "^0.11.1",
     "lodash.clonedeep": "^4.5.0",
-    "lodash.mergewith": "^4.6.1"
+    "lodash.mergewith": "^4.6.2"
   },
   "dependencies": {
-    "class-transformer": "^0.2.0",
-    "class-validator": "^0.9.1",
+    "class-transformer": "^0.2.3",
+    "class-validator": "^0.11.1",
     "lodash.clonedeep": "^4.5.0",
-    "lodash.mergewith": "^4.6.1"
+    "lodash.mergewith": "^4.6.2"
   }
 }

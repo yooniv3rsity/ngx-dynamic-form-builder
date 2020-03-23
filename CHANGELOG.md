@@ -1,3 +1,37 @@
+# [1.3.0](https://github.com/EndyKaufman/ngx-dynamic-form-builder/compare/1.2.0...1.3.0) (2020-03-19)
+
+
+### Bug Fixes
+
+* add unsubscribe from subscribe to form group changes, change transform class validator to usage async angular validator ([59270ba](https://github.com/EndyKaufman/ngx-dynamic-form-builder/commit/59270ba8b50a80cea7a9aa48d213ee94ee6a2549))
+
+
+### Features
+
+* add control name to DynamicFormControl ([a033091](https://github.com/EndyKaufman/ngx-dynamic-form-builder/commit/a033091f98f5296a248c7be567bf553790e8a1ff))
+
+
+
+# [1.2.0](https://github.com/EndyKaufman/ngx-dynamic-form-builder/compare/1.1.0...1.2.0) (2020-03-12)
+
+
+### Features
+
+* update dependencies ([5946cf5](https://github.com/EndyKaufman/ngx-dynamic-form-builder/commit/5946cf5b06f414eeaa79246a1871250b4a3f7dbd))
+* update deps ([de6e549](https://github.com/EndyKaufman/ngx-dynamic-form-builder/commit/de6e5497ee0df88eb62c82120c3fe5eeb61a4c74))
+
+
+
+# [1.1.0](https://github.com/EndyKaufman/ngx-dynamic-form-builder/compare/1.0.0...1.1.0) (2020-02-11)
+
+
+### Features
+
+* update for new tslint and tsconfig rules ([3de5c31](https://github.com/EndyKaufman/ngx-dynamic-form-builder/commit/3de5c3164d0e6a74011cb6bdc14fa33f19f7ad15))
+* update versions of deps ([3ab7069](https://github.com/EndyKaufman/ngx-dynamic-form-builder/commit/3ab70699d659640121feb4a2e465a80d1f5760a8))
+
+
+
 # [1.0.0](https://github.com/EndyKaufman/ngx-dynamic-form-builder/compare/0.10.1...1.0.0) (2019-05-04)
 
 

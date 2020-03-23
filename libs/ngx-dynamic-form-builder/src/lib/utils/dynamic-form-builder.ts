@@ -1,4 +1,4 @@
-import { AbstractControlOptions, AsyncValidatorFn, FormBuilder, ValidatorFn } from '@angular/forms';
+import { AbstractControlOptions, AsyncValidatorFn, FormBuilder, ValidatorFn, FormArray } from '@angular/forms';
 import { plainToClass } from 'class-transformer';
 import { ClassType } from 'class-transformer/ClassTransformer';
 import 'reflect-metadata';
@@ -8,7 +8,8 @@ import {
   isDynamicFormGroupConfig,
   isLegacyOrOpts
 } from '../models/dynamic-form-group-config';
-import { DynamicFormGroup, FormModel, getClassValidators } from './dynamic-form-group';
+import { FormModel } from '../models/form-model';
+import { DynamicFormGroup, getClassValidators } from './dynamic-form-group';
 
 export class DynamicFormBuilder extends FormBuilder {
   // ******************
@@ -19,6 +20,9 @@ export class DynamicFormBuilder extends FormBuilder {
     controlsConfig?: FormModel<TModel> | DynamicFormGroupConfig | { [key: string]: any },
     options?: AbstractControlOptions | DynamicFormGroupConfig
   ): DynamicFormGroup<TModel> {
+    if (!controlsConfig && !options) {
+      options = {};
+    }
     // Process the group with the controlsConfig passed into extra instead. (What does this accomplish?)
     if (
       controlsConfig &&
@@ -29,7 +33,7 @@ export class DynamicFormBuilder extends FormBuilder {
     ) {
       return this.group(factoryModel, undefined, controlsConfig);
     }
-    const extra: DynamicFormGroupConfig = options as DynamicFormGroupConfig;
+    const extra: DynamicFormGroupConfig = (options || {}) as DynamicFormGroupConfig;
 
     let validators: ValidatorFn[] | null = null;
     let asyncValidators: AsyncValidatorFn[] | null = null;
@@ -45,15 +49,21 @@ export class DynamicFormBuilder extends FormBuilder {
       if (isLegacyOrOpts(extra)) {
         // `extra` are legacy form group options
         validators = validators || [];
-        validators = [...validators, extra.validator != null ? extra.validator : null];
+        if (extra.validator != null) {
+          validators.push(extra.validator);
+        }
         asyncValidators = asyncValidators || [];
-        asyncValidators = [...asyncValidators, extra.asyncValidator != null ? extra.asyncValidator : null];
+        if (extra.asyncValidator != null) {
+          asyncValidators.push(extra.asyncValidator);
+        }
       }
       // Set default customValidatorOptions
       if (!isDynamicFormGroupConfig(extra)) {
         extra.customValidatorOptions = { validationError: { target: false } };
       }
     }
+    
+    // If there is no manual controlsConfig specified, use given factoryModel to create a proto-form-model. 
 
     let newControlsConfig: FormModel<TModel>;
 
@@ -77,53 +87,57 @@ export class DynamicFormBuilder extends FormBuilder {
         } else {
           if (canCreateArray()) {
             if (newControlsConfig[key][0].constructor) {
-              // recursively create an array with a group
-              newControlsConfig[key] = super.array(
-                newControlsConfig[key].map(newControlsConfigItem =>
-                  this.group(newControlsConfigItem.constructor, undefined, {
-                    ...(extra.customValidatorOptions ? { customValidatorOptions: extra.customValidatorOptions } : {}),
-                    asyncValidators,
-                    updateOn,
-                    validators
-                  })
-                )
+			  // recursively create an array with a group
+			  const newFormArrayGroup = newControlsConfig[key].map(newControlsConfigItem =>
+				this.group(newControlsConfigItem.constructor, undefined, {
+				  ...(extra.customValidatorOptions ? { customValidatorOptions: extra.customValidatorOptions } : {}),
+				  asyncValidators,
+				  updateOn,
+				  validators
+				})
+			  );
+			//   console.log('///////// FormGroup for formArray',newFormArrayGroup,newControlsConfig[key][0].constructor)
+              newControlsConfig[key] = this.array(
+                newFormArrayGroup
               );
+			//   console.log('///////// formArray',newControlsConfig[key])
             } else {
               // Create an array of form controls
-              newControlsConfig[key] = super.array(
+              newControlsConfig[key] = this.array(
                 newControlsConfig[key].map(newControlsConfigItem => this.control(newControlsConfigItem))
               );
             }
           }
-        }
+		}
+		
+		function canCreateGroup() {
+			const candidate = newControlsConfig && newControlsConfig[key];
 
-        function canCreateGroup() {
-          const candidate = newControlsConfig[key];
+			return (
+				candidate &&
+				!Array.isArray(candidate) &&
+				candidate.constructor &&
+				typeof candidate === 'object' &&
+				(candidate.length === undefined ||
+				(candidate.length !== undefined && Object.keys(candidate).length === candidate.length))
+			);
+		}
 
-          return (
-            candidate &&
-            !Array.isArray(candidate) &&
-            candidate.constructor &&
-            typeof candidate === 'object' &&
-            (candidate.length === undefined ||
-              (candidate.length !== undefined && Object.keys(candidate).length === candidate.length))
-          );
-        }
+		function canCreateArray() {
+			if (Array.isArray(newControlsConfig && newControlsConfig[key]) === false) {
+				return false;
+			}
 
-        function canCreateArray() {
-          if (Array.isArray(newControlsConfig[key]) === false) {
-            return false;
-          }
+			const candidate = newControlsConfig && newControlsConfig[key][0];
 
-          const candidate = newControlsConfig[key][0];
+			return (
+				candidate.constructor &&
+				typeof candidate === 'object' &&
+				(candidate.length === undefined ||
+				(candidate.length !== undefined && Object.keys(candidate).length === candidate.length))
+			);
+		}
 
-          return (
-            candidate.constructor &&
-            typeof candidate === 'object' &&
-            (candidate.length === undefined ||
-              (candidate.length !== undefined && Object.keys(candidate).length === candidate.length))
-          );
-        }
       });
     }
 
@@ -156,27 +170,39 @@ export class DynamicFormBuilder extends FormBuilder {
     });
 
     // Add a listener to the dynamic group for value changes; on change, execute validation
-    dynamicFormGroup.valueChanges.subscribe(data => {
-      dynamicFormGroup.validate(undefined, extra && extra.customValidatorOptions);
-    });
+    dynamicFormGroup.subscribeToValueChanges(undefined, extra && extra.customValidatorOptions);
 
     return dynamicFormGroup;
   }
 
+  array(
+	controlsConfig: any[],
+	validatorOrOpts?: ValidatorFn|ValidatorFn[]|AbstractControlOptions|null,
+	asyncValidator?: AsyncValidatorFn|AsyncValidatorFn[]|null): FormArray
+  {
+    return super.array(controlsConfig,validatorOrOpts,asyncValidator);
+  }
   // *******************
   // Helpers
 
   /**
    * Recursively creates an empty object from the data provided
    */
-  private createEmptyObject<TModel>(factoryModel: ClassType<TModel>, data = {}) {
+  private createEmptyObject<TModel>(factoryModel: ClassType<TModel>, data = {}, first=true) {
     let modifed = false;
-
-    const object: any = factoryModel ? plainToClass(factoryModel, data) : data;
-    const fields = Object.keys(object);
+    // const object: any = factoryModel ? new factoryModel(data) : data;
+    let object: any = factoryModel ? plainToClass(factoryModel, data) : data;
+	const fields = Object.keys(object);
+	
+	// if(first) console.log('create empty object',object)
+	// if(!first) console.log('object created from modified', object,data)
 
     fields.forEach((fieldName: any) => {
+		// find array fields
       if (object[fieldName] && object[fieldName].length !== undefined) {
+		  // check if field has an existing object entry with constructor
+		  // if so, createEmptyObject from entries constructor - why??
+		  // probably to find sub-arrays!
         if (
           object[fieldName].length === 1 &&
           Object.keys(object[fieldName][0]).length > 0 &&
@@ -185,6 +211,7 @@ export class DynamicFormBuilder extends FormBuilder {
           object[fieldName] = [this.createEmptyObject(object[fieldName][0].constructor)];
         }
 
+		// if length is 0, add an empty entry and run createEmptyObject with modified data again.
         if (object[fieldName].length === 0) {
           data[fieldName] = [{}];
           modifed = true;
@@ -192,12 +219,14 @@ export class DynamicFormBuilder extends FormBuilder {
       } else {
         data[fieldName] = undefined;
       }
-    });
+	});
+	
 
     if (modifed) {
-      return this.createEmptyObject(factoryModel, data);
+		// console.log('xxx',data)
+      object = this.createEmptyObject(factoryModel, data, false);
     }
-
-    return object;
+	// console.log('========== Resulting object',object)
+	return object;
   }
 }
