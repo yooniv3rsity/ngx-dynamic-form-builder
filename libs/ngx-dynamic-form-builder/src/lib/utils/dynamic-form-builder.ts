@@ -10,7 +10,9 @@ import {
 } from '../models/dynamic-form-group-config';
 import { FormModel } from '../models/form-model';
 import { DynamicFormGroup, getClassValidators } from './dynamic-form-group';
+import { Injectable } from '@angular/core';
 
+@Injectable({providedIn:'root'})
 export class DynamicFormBuilder extends FormBuilder {
   // ******************
   // Public API
@@ -69,10 +71,7 @@ export class DynamicFormBuilder extends FormBuilder {
 
     if (controlsConfig !== undefined) {
       newControlsConfig = controlsConfig as FormModel<TModel>;
-    }
-
-    // experimental
-    if (controlsConfig === undefined) {
+    } else {
       newControlsConfig = { ...this.createEmptyObject(factoryModel) };
 
       Object.keys(newControlsConfig).forEach(key => {
