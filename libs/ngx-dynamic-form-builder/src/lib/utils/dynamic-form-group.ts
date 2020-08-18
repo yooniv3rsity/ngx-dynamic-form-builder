@@ -710,11 +710,29 @@ export function getClassValidators<TModel>(
             return of(null)
         }
 
-        const isValid =
-          control.parent && control.parent.value
-            ? validator.validateValueByMetadata(control.value, validationMetadata)
-            : true;
-        let validateState$ = of(isValid);
+		let isValid = true;
+		function convertToArray(val) {
+			if (val instanceof Map) {
+				return Array.from(val.values());
+			}
+			return Array.isArray(val) ? val : Array.from(val);
+		}
+
+		if (control.parent && control.parent.value) {
+			const value = control.value;
+			if (validationMetadata.each) {
+				if (value instanceof Array || value instanceof Set || value instanceof Map) {
+					const arrayValue = convertToArray(value);
+					isValid = arrayValue.every(function (subValue) { 
+						return validator.validateValueByMetadata(subValue, validationMetadata); 
+					});
+				}
+			}
+			else {
+				isValid = validator.validateValueByMetadata(value, validationMetadata);
+			}
+		}
+		let validateState$ = of(isValid);
         if (!isValid && conditionalValidations.length > 0) {
           validateState$ = setObjectValueAndGetValidationErrors(fieldName, control, validatorOptions).pipe(
             map(validateErrors => (validateErrors ? !!validateErrors[fieldName] : false))
