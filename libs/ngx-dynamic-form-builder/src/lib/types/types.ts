@@ -81,6 +81,8 @@ export interface DynamicFormBuilderOptions<T> {
   [DynamicFormBuilderOptionsKeys.classTransformOptions]?: DynamicClassTransformOptions;
   [DynamicFormBuilderOptionsKeys.classTransformToPlainOptions]?: ClassTransformOptions;
   [DynamicFormBuilderOptionsKeys.angularValidators]?: AngularControlValidators<T>;
+  maxNestedModelDepth?:number;
+  allowedNestedModels?:string[];
 }
 
 export interface ClassValidatorErrors {
