@@ -57,6 +57,8 @@ export interface DynamicFormBuilderOptions {
   classValidatorOptions?: ValidatorOptions;
   classTransformOptions?: ClassTransformOptions;
   classTransformToPlainOptions?: ClassTransformOptions;
+  maxNestedModelDepth?:number;
+  allowedNestedModels?:string[];
 }
 
 export interface ClassValidatorErrors {
