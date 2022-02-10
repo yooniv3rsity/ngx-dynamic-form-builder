@@ -800,6 +800,7 @@ function getMetadata(
 	  if (propertyMetadata) {
 		if(depthLimitExceeded) {
 	      // prop exceeds limit, it should not be created at all, so remove it from list
+		  console.warn('ngx-dynamic-form-builder has hit depth limit!',propertyMetadata)
 		  delete properties[index];
 		} else {
 		  const propertyPath = [...currentPath,exposeMetadataItem.propertyName];
@@ -911,7 +912,7 @@ function setupDynamicFormBuilderOptions<T = Record<string, unknown>>({
   };
   dynamicForm.dynamicFormBuilderOptions.maxNestedModelDepth = 
     (typeof dynamicForm.dynamicFormBuilderOptions.maxNestedModelDepth==='number' ? 
-	  dynamicForm.dynamicFormBuilderOptions.maxNestedModelDepth : 2);
+	  dynamicForm.dynamicFormBuilderOptions.maxNestedModelDepth : 5);
 
 	// dynamicFormBuilderOptions.allowedNestedModels defaults to undefined
 }
