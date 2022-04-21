@@ -75,7 +75,7 @@
     "github:postbuild": "./node_modules/.bin/cp-cli ./dist/apps/demo/index.html ./dist/apps/demo/404.html",
     "github:deploy": "gh-pages -d dist/apps/demo"
   },
-  "private": true,
+  "private": false,
   "devDependencies": {
     "@angular-devkit/build-angular": "~13.2.2",
     "@angular-eslint/eslint-plugin": "~13.0.1",
