@@ -846,7 +846,7 @@ function getMetadata(
 
   const metadata = {
     classType,
-    properties,
+    properties:properties.filter(prop=>typeof prop !== 'undefined'), // as entries may have been deleted, we need to filter those out to not break other code
     withAncestors:
       (ancestorsProperties?.length > 0 ? ancestorsProperties[0] : []).length >
       0,
