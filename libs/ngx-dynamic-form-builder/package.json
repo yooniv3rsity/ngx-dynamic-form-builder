@@ -1,6 +1,6 @@
 {
   "name": "@yoolabs/ngx-dynamic-form-builder",
-  "version": "2.2.0rc3",
+  "version": "2.2.0rc5",
   "description": "FormBuilder + class-transformer-global-storage + class-validator-multi-lang = dynamic form group builder for Angular12+",
   "keywords": [
     "form-builder",
