@@ -8,10 +8,9 @@
 * 2022-02-10 - released as 2.2.0
 * 2022-04-21 - bugfix: filter deleted entries from metadata properties array, was erroring because metadata depth limit left explicit "undefined" entries, released as 2.2.0rc3
 * 2022-04-21 - released as 2.2.0rc5
+* 2022-09-07 - ---- merge master 2.2.2 (fix inconsistent behavior of setObject, lock dependency versions)
+* 2022-09-07 - refactor lib.ts changes, add comments and try to make more transparent what has been changed.
 
-Pending Master Updates:
-* 2.2.1 - fix inconsistent behavior of setObject
-* 2.2.2 - lock dep versions
 
 
 
