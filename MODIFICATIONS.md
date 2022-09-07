@@ -14,6 +14,7 @@
 ## Create custom release
 
 * Run tests manually as needed
+* libs/ngx-dynamic-form-builder has its own package.json! Update version accordingly!
 * `npm run lib:build-lib` to populate dist folder
 * validate generated package
 * `npm run publish`
