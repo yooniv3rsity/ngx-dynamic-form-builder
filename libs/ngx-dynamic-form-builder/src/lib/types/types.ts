@@ -1,9 +1,11 @@
 import {
   AbstractControl,
+  AbstractControlOptions,
   FormArray,
   FormControl,
   FormGroup,
   ValidationErrors,
+  ValidatorFn,
 } from '@angular/forms';
 import {
   ClassConstructor,
@@ -26,6 +28,16 @@ export interface IDynamicControlMetadata {
   ignore?: boolean;
   parent?: IDynamicControlMetadata;
 }
+
+export type AngularControlValidators<T> =
+  | {
+      [P in keyof T]: AngularControlValidators<T[P]>;
+    }
+  | ValidatorFn
+  | ValidatorFn[]
+  | AbstractControlOptions
+  | undefined
+  | null;
 
 export interface DynamicControlOptions {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -53,12 +65,26 @@ export type DynamicFormArray = FormArray & DynamicFormProperties;
 
 export type DynamicFormControl = FormControl & DynamicFormProperties;
 
-export interface DynamicFormBuilderOptions {
-  classValidatorOptions?: ValidatorOptions;
-  classTransformOptions?: ClassTransformOptions;
-  classTransformToPlainOptions?: ClassTransformOptions;
-  maxNestedModelDepth?:number;
-  allowedNestedModels?:string[];
+export enum DynamicFormBuilderOptionsKeys {
+  classValidatorOptions = 'classValidatorOptions',
+  classTransformOptions = 'classTransformOptions',
+  classTransformToPlainOptions = 'classTransformToPlainOptions',
+  angularValidators = 'angularValidators',
+  maxNestedModelDepth = 'maxNestedModelDepth',
+  allowedNestedModels = 'allowedNestedModels',
+}
+
+export type DynamicClassTransformOptions = ClassTransformOptions & {
+  excludeGroups?: string[];
+};
+
+export interface DynamicFormBuilderOptions<T> {
+  [DynamicFormBuilderOptionsKeys.classValidatorOptions]?: ValidatorOptions;
+  [DynamicFormBuilderOptionsKeys.classTransformOptions]?: DynamicClassTransformOptions;
+  [DynamicFormBuilderOptionsKeys.classTransformToPlainOptions]?: ClassTransformOptions;
+  [DynamicFormBuilderOptionsKeys.angularValidators]?: AngularControlValidators<T>;
+  [DynamicFormBuilderOptionsKeys.maxNestedModelDepth]?: number;
+  [DynamicFormBuilderOptionsKeys.allowedNestedModels]?: string[];
 }
 
 export interface ClassValidatorErrors {
@@ -76,7 +102,7 @@ export type DynamicFormGroup<T = never, TJSON = T> = FormGroup &
   DynamicFormProperties<T> & {
     globalDynamicFormBuilderOptionsChangedSubscription: Subscription;
 
-    dynamicFormBuilderOptions: DynamicFormBuilderOptions;
+    dynamicFormBuilderOptions: DynamicFormBuilderOptions<T>;
 
     commonAsyncValidatorSubject: ReplaySubject<null | string>;
     commonAsyncValidatorFirstChanged: boolean;
@@ -102,7 +128,7 @@ export type DynamicFormGroup<T = never, TJSON = T> = FormGroup &
     ): void;
 
     patchDynamicFormBuilderOptions(
-      dynamicFormBuilderOptions: DynamicFormBuilderOptions
+      dynamicFormBuilderOptions: DynamicFormBuilderOptions<T>
     ): void;
 
     refresh: () => void;

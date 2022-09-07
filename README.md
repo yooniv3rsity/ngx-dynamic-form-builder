@@ -26,8 +26,6 @@ Fork [class-transformer-global-storage](https://github.com/petrzjunior/class-tra
 
 For correct parse metadata, need remove `compilerOptions.downlevelIteration` and append `compilerOptions.emitDecoratorMetadata: true` in `tsconfig.json`
 
-Native Angular validators not supported
-
 ## Links
 
 [Demo](https://endykaufman.github.io/ngx-dynamic-form-builder) - Demo application with ngx-dynamic-form-builder.
@@ -133,7 +131,7 @@ export class CompanyPanelComponent {
   savedItem?: Company;
 
   constructor() {
-    this.form = this.fb.group(Company, {
+    this.form = this.fb.rootFormGroup(Company, {
       name: '',
     });
   }
@@ -289,7 +287,7 @@ Because multi-language supported in class-validator-multi-lang, now ngx-dynamic-
 set validation messages as settings when create form group
 
 ```typescript
-this.form = this.fb.group(
+this.form = this.fb.rootFormGroup(
   Company,
   {
     name: '',
@@ -403,7 +401,7 @@ export class CompanyPanelComponent implements onDestroy {
   errorChangeSubscription: Subscription;
 
   constructor() {
-    this.form = this.fb.group(Company, {
+    this.form = this.fb.rootFormGroup(Company, {
       name: '',
     });
 

@@ -2,12 +2,42 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [2.0.1](https://github.com/EndyKaufman/ngx-dynamic-form-builder/compare/v2.0.0...v2.0.1) (2022-01-23)
+### [2.2.2](https://github.com/EndyKaufman/ngx-dynamic-form-builder/compare/v2.2.1...v2.2.2) (2022-06-26)
 
 
 ### Bug Fixes
 
-* update readme ([f7f9ca3](https://github.com/EndyKaufman/ngx-dynamic-form-builder/commit/f7f9ca3e3abf955a6c4425c679aaa5c216d4c5e8))
+* lock versions of deps ([f61029b](https://github.com/EndyKaufman/ngx-dynamic-form-builder/commit/f61029b283b84f5b7a46214b8db97bc1b895e4c7))
+
+### [2.2.1](https://github.com/EndyKaufman/ngx-dynamic-form-builder/compare/v2.2.0...v2.2.1) (2022-02-19)
+
+### Bug Fixes
+
+- add check type of array, check for DynamicFormArray ([6e115a5](https://github.com/EndyKaufman/ngx-dynamic-form-builder/commit/6e115a55a5ebb21e7f4916b4690ab75b26c465c0))
+- setObject -- inconsistent behavior on FormArrays ([#195](https://github.com/EndyKaufman/ngx-dynamic-form-builder/issues/195)) ([767f540](https://github.com/EndyKaufman/ngx-dynamic-form-builder/commit/767f5407ccd43f0f28fa4928550c5fd7666edc69))
+- the initial value of formArrayLength is unused, since it is always overwritten ([569726f](https://github.com/EndyKaufman/ngx-dynamic-form-builder/commit/569726fb8f7f67579e5fc11f7c13c992e2864c5f))
+
+## [2.2.0](https://github.com/EndyKaufman/ngx-dynamic-form-builder/compare/v2.1.0...v2.2.0) (2022-02-09)
+
+### Features
+
+- update deps ([e9da929](https://github.com/EndyKaufman/ngx-dynamic-form-builder/commit/e9da9294415304cdc0c6ce629dfd3df2195e39a4))
+
+### Bug Fixes
+
+- add childFormGroup for work with nested FormArrays ([#192](https://github.com/EndyKaufman/ngx-dynamic-form-builder/issues/192)) ([c3bd0e2](https://github.com/EndyKaufman/ngx-dynamic-form-builder/commit/c3bd0e228e68affdebffa34ca0245c66b46520fc))
+
+## [2.1.0](https://github.com/EndyKaufman/ngx-dynamic-form-builder/compare/v2.0.1...v2.1.0) (2022-01-30)
+
+### Features
+
+- add support native Angular validators ([#183](https://github.com/EndyKaufman/ngx-dynamic-form-builder/issues/183)), support correct work with isOptional ([#188](https://github.com/EndyKaufman/ngx-dynamic-form-builder/issues/188)), add excludeGroups for fix recursive errors and unexpected creation of submodels ([#185](https://github.com/EndyKaufman/ngx-dynamic-form-builder/issues/185)) ([d9d8c77](https://github.com/EndyKaufman/ngx-dynamic-form-builder/commit/d9d8c77b2d8b1c6967448b0271279f6608cb3098))
+
+### [2.0.1](https://github.com/EndyKaufman/ngx-dynamic-form-builder/compare/v2.0.0...v2.0.1) (2022-01-23)
+
+### Bug Fixes
+
+- update readme ([f7f9ca3](https://github.com/EndyKaufman/ngx-dynamic-form-builder/commit/f7f9ca3e3abf955a6c4425c679aaa5c216d4c5e8))
 
 ## 2.0.0 (2022-01-23)
 

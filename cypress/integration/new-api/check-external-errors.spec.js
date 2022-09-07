@@ -2,6 +2,7 @@
 describe('Check external errors', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000');
+    cy.wait(600);
   });
 
   it('load default data and set external errors', () => {
@@ -34,6 +35,16 @@ describe('Check external errors', () => {
       'have.text',
       `{
   "name": "dep name 1",
+  "groups": [
+    {
+      "id": 33,
+      "name": "group name 1"
+    },
+    {
+      "id": 44,
+      "name": "group name 2"
+    }
+  ],
   "company": {
     "name": "comp name 1",
     "country": "USA",
@@ -57,14 +68,14 @@ describe('Check external errors', () => {
     {
       "type": "car",
       "transportNumber": "DMC-12",
-      "numberOfWheels": 4,
-      "numberOfTurbines": ""
+      "numberOfTurbines": null,
+      "numberOfWheels": 4
     },
     {
       "type": "airplane",
       "transportNumber": "Boeing 737",
       "numberOfTurbines": 2,
-      "numberOfWheels": ""
+      "numberOfWheels": null
     }
   ]
 }`
@@ -132,6 +143,16 @@ describe('Check external errors', () => {
       'have.text',
       `{
   "name": "dep name 1",
+  "groups": [
+    {
+      "id": 33,
+      "name": "group name 1"
+    },
+    {
+      "id": 44,
+      "name": "group name 2"
+    }
+  ],
   "company": {
     "name": "comp name 1",
     "country": "USA",
@@ -155,14 +176,14 @@ describe('Check external errors', () => {
     {
       "type": "car",
       "transportNumber": "DMC-12",
-      "numberOfWheels": 4,
-      "numberOfTurbines": ""
+      "numberOfTurbines": null,
+      "numberOfWheels": 4
     },
     {
       "type": "airplane",
       "transportNumber": "Boeing 737",
       "numberOfTurbines": 2,
-      "numberOfWheels": ""
+      "numberOfWheels": null
     }
   ]
 }`
@@ -216,6 +237,16 @@ describe('Check external errors', () => {
       'have.text',
       `{
   "name": "dep name 1",
+  "groups": [
+    {
+      "id": 33,
+      "name": "group name 1"
+    },
+    {
+      "id": 44,
+      "name": "group name 2"
+    }
+  ],
   "company": {
     "name": "comp name 1",
     "country": "USA",
@@ -239,14 +270,14 @@ describe('Check external errors', () => {
     {
       "type": "car",
       "transportNumber": "DMC-12",
-      "numberOfWheels": 4,
-      "numberOfTurbines": ""
+      "numberOfTurbines": null,
+      "numberOfWheels": 4
     },
     {
       "type": "airplane",
       "transportNumber": "Boeing 737",
       "numberOfTurbines": 2,
-      "numberOfWheels": ""
+      "numberOfWheels": null
     }
   ]
 }`
