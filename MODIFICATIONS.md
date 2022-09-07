@@ -11,7 +11,12 @@
 * 2022-09-07 - ---- merge master 2.2.2 (fix inconsistent behavior of setObject, lock dependency versions)
 * 2022-09-07 - refactor lib.ts changes, add comments and try to make more transparent what has been changed.
 
+## Create custom release
 
+* Run tests manually as needed
+* `npm run lib:build-lib` to populate dist folder
+* validate generated package
+* `npm run publish`
 
 
 ## Nested Forms and Models
