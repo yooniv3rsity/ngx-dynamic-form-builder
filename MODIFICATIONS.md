@@ -11,6 +11,17 @@
 * 2022-09-07 - ---- merge master 2.2.2 (fix inconsistent behavior of setObject, lock dependency versions)
 * 2022-09-07 - refactor lib.ts changes, add comments and try to make more transparent what has been changed.
 
+## Testing
+
+`npm run test` is the all-in-one Cypress command. It executes
+
+* `lib:build` -- build dist lib
+* `test:integrations-prepare` -- installs test env at integrations/app and installs local dist lib
+* `test:integrations-serve` -- setup testing server
+*  `cy:run` -- init cypress
+
+To execute custom unit tests, use `npm run jest`.
+
 ## Create custom release
 
 * Run tests manually as needed
