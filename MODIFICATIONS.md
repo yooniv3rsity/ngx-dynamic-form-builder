@@ -10,6 +10,8 @@
 * 2022-04-21 - released as 2.2.0rc5
 * 2022-09-07 - ---- merge master 2.2.2 (fix inconsistent behavior of setObject, lock dependency versions)
 * 2022-09-07 - refactor lib.ts changes, add comments and try to make more transparent what has been changed.
+* 2022-09-15 - migrate to angular 14 (for correct peer deps), document & fix testing setup
+* 2022-09-15 - released as 2.3.0rc1
 
 ## Testing
 
