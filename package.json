@@ -46,7 +46,7 @@
   "scripts": {
     "nx": "nx",
     "rucken": "rucken",
-    "postinstall": "ngcc --properties es2015 browser module main && npx browserslist@latest --update-db",
+    "postinstall": "ngcc --properties es2020 browser module main && npx browserslist@latest --update-db",
     "lint": "npm run tsc:lint && nx workspace-lint && nx run-many --target=lint --all",
     "lint:fix": "npm run tsc:lint && nx workspace-lint --fix && nx run-many --target=lint --all --fix && nx format:write --all",
     "tsc:lint": "tsc --noEmit -p tsconfig.base.json",
@@ -63,6 +63,7 @@
     "i18n:extract": "DEBUG=* transloco-keys-manager extract",
     "i18n:find": "DEBUG=config,paths transloco-keys-manager find",
     "cy:run": "cypress run",
+    "jest": "jest ./libs/ngx-dynamic-form-builder",
     "test:integrations-prepare": "sh ./integrations/scripts/prepare-application.sh",
     "test:integrations-serve": "npx --yes serve ./integrations/app/dist/app",
     "test:integrations-run": "npm run test:integrations-serve & npm run cy:run",
@@ -81,7 +82,7 @@
     "@angular-eslint/eslint-plugin": "14.0.4",
     "@angular-eslint/eslint-plugin-template": "14.0.4",
     "@angular-eslint/template-parser": "14.0.4",
-    "@angular/cli": "13.3.9",
+    "@angular/cli": "~14.2.0",
     "@angular/compiler-cli": "14.2.2",
     "@angular/language-service": "14.2.2",
     "@nrwl/angular": "14.7.5",
@@ -90,7 +91,6 @@
     "@nrwl/eslint-plugin-nx": "14.7.5",
     "@nrwl/jest": "14.7.5",
     "@nrwl/linter": "14.7.5",
-    "@nrwl/tao": "14.7.5",
     "@nrwl/workspace": "14.7.5",
     "@types/jest": "28.1.8",
     "@types/lodash.clonedeep": "4.5.6",
@@ -108,6 +108,7 @@
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-cypress": "2.12.1",
     "jest": "28.1.3",
+    "jest-environment-jsdom": "28.1.1",
     "jest-preset-angular": "12.2.2",
     "lite-server": "2.6.1",
     "lodash.clonedeep": "4.5.0",
@@ -116,6 +117,7 @@
     "mochawesome": "7.0.1",
     "ng-packagr": "14.2.1",
     "npm-run-all": "4.1.5",
+    "nx": "14.7.5",
     "postcss": "8.4.5",
     "postcss-import": "14.1.0",
     "postcss-preset-env": "7.5.0",
@@ -124,6 +126,7 @@
     "rucken": "3.4.0",
     "standard-version": "9.3.2",
     "ts-jest": "28.0.8",
+    "ts-node": "10.9.1",
     "typescript": "4.7.4",
     "validator": "13.7.0"
   },
@@ -157,9 +160,8 @@
     "prismjs": "1.26.0",
     "raw-loader": "4.0.2",
     "reflect-metadata": "0.1.13",
-    "rxjs": "7.4.0",
+    "rxjs": "~7.5.0",
     "tslib": "2.0.0",
     "zone.js": "0.11.4"
   }
 }
-

@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/ngx-dynamic-form-builder",
   "sourceRoot": "libs/ngx-dynamic-form-builder/src",
   "prefix": "ngx-dynamic-form-builder",
   "targets": {

@@ -1,6 +1,5 @@
 {
   "projectType": "application",
-  "root": "apps/debug",
   "sourceRoot": "apps/debug/src",
   "prefix": "ngx-dynamic-form-builder",
   "targets": {

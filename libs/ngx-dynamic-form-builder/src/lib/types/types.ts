@@ -1,9 +1,9 @@
 import {
   AbstractControl,
   AbstractControlOptions,
-  FormArray,
-  FormControl,
-  FormGroup,
+  UntypedFormArray,
+  UntypedFormControl,
+  UntypedFormGroup,
   ValidationErrors,
   ValidatorFn,
 } from '@angular/forms';
@@ -61,9 +61,9 @@ export type DynamicFormProperties<T = unknown> = {
   value: AbstractControl['value'];
 };
 
-export type DynamicFormArray = FormArray & DynamicFormProperties;
+export type DynamicFormArray = UntypedFormArray & DynamicFormProperties;
 
-export type DynamicFormControl = FormControl & DynamicFormProperties;
+export type DynamicFormControl = UntypedFormControl & DynamicFormProperties;
 
 export enum DynamicFormBuilderOptionsKeys {
   classValidatorOptions = 'classValidatorOptions',
@@ -98,7 +98,7 @@ export interface ShortValidationErrors {
   [key: string]: string[] | ShortValidationErrors | any;
 }
 
-export type DynamicFormGroup<T = never, TJSON = T> = FormGroup &
+export type DynamicFormGroup<T = never, TJSON = T> = UntypedFormGroup &
   DynamicFormProperties<T> & {
     globalDynamicFormBuilderOptionsChangedSubscription: Subscription;
 

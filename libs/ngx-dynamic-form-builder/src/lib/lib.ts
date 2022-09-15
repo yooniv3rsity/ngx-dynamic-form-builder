@@ -1,9 +1,9 @@
 import {
   AbstractControl,
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
+  UntypedFormArray,
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
   ValidationErrors,
   ValidatorFn,
 } from '@angular/forms';
@@ -63,8 +63,8 @@ export function createFormControls<T = Record<string, unknown>>({
   dynamicFormBuilderOptions,
 }: {
   classType: ClassConstructor<T> | null;
-  formBuilder: FormBuilder;
-  form?: FormGroup;
+  formBuilder: UntypedFormBuilder;
+  form?: UntypedFormGroup;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   rootFormGroup?: DynamicFormGroup<any>;
   metadata?: IDynamicControlMetadata;
@@ -126,7 +126,7 @@ export function createFormControls<T = Record<string, unknown>>({
 }
 
 export function setValuesForControls<T = Record<string, unknown>>(
-  formBuilder: FormBuilder,
+  formBuilder: UntypedFormBuilder,
   form: DynamicFormGroup<T>,
   value: T
 ) {
@@ -183,7 +183,7 @@ export function setValuesForControls<T = Record<string, unknown>>(
           if (!metadataItem.isArray) {
             const control = form.controls[
               metadataItem.propertyName
-            ] as FormControl;
+            ] as UntypedFormControl;
             if (
               !metadataItem.classType ||
               isPrimitiveClass(metadataItem.classType)
@@ -306,7 +306,7 @@ export function setValuesForControls<T = Record<string, unknown>>(
 }
 
 export function setValidatorsToControls<T>(
-  formBuilder: FormBuilder,
+  formBuilder: UntypedFormBuilder,
   form: DynamicFormGroup<T>,
   rootFormGroup?: DynamicFormGroup<T>
 ) {
@@ -574,34 +574,34 @@ export function setValidatorsToControls<T>(
   });
 }
 
-export function validateAllFormFields(form: FormGroup) {
+export function validateAllFormFields(form: UntypedFormGroup) {
   let control: AbstractControl | null;
   let formArrayControlsLength: number;
   Object.keys(form.controls).forEach((field) => {
     control = form.get(field);
 
     // Control
-    if (control instanceof FormControl) {
+    if (control instanceof UntypedFormControl) {
       control.markAsTouched({ onlySelf: true });
     }
     // Group: recursive
-    else if (control instanceof FormGroup) {
+    else if (control instanceof UntypedFormGroup) {
       validateAllFormFields(control);
     }
     // Array
-    else if (control instanceof FormArray) {
-      formArrayControlsLength = (control as FormArray).controls.length;
+    else if (control instanceof UntypedFormArray) {
+      formArrayControlsLength = (control as UntypedFormArray).controls.length;
       for (let i = 0; i < formArrayControlsLength; i++) {
         // Control in Array
-        if ((control as FormArray).controls[i] instanceof FormControl) {
-          ((control as FormArray).controls[i] as FormControl).markAsTouched({
+        if ((control as UntypedFormArray).controls[i] instanceof UntypedFormControl) {
+          ((control as UntypedFormArray).controls[i] as UntypedFormControl).markAsTouched({
             onlySelf: true,
           });
         }
         // Group in Array: recursive
-        if ((control as FormArray).controls[i] instanceof FormGroup) {
+        if ((control as UntypedFormArray).controls[i] instanceof UntypedFormGroup) {
           validateAllFormFields(
-            (control as FormArray).controls[i] as FormGroup
+            (control as UntypedFormArray).controls[i] as UntypedFormGroup
           );
         }
       }
@@ -943,7 +943,7 @@ function createAllFormGroupChildrenControls<T = Record<string, unknown>>({
 }: {
   dynamicForm: DynamicFormGroup<T, T>;
   defaultValue: DeepPartial<T>;
-  formBuilder: FormBuilder;
+  formBuilder: UntypedFormBuilder;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   rootFormGroup: DynamicFormGroup<any, any> | undefined;
   dynamicFormBuilderOptions: DynamicFormBuilderOptions<T> | undefined;
@@ -1024,7 +1024,7 @@ function addDynamicTypedObjectAsFormArray<T = Record<string, unknown>>({
 }: {
   defaultValue: DeepPartial<T>;
   metadataItem: IDynamicControlMetadata;
-  formBuilder: FormBuilder;
+  formBuilder: UntypedFormBuilder;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   rootFormGroup: DynamicFormGroup<any, any> | undefined;
   dynamicFormBuilderOptions: DynamicFormBuilderOptions<T> | undefined;
@@ -1073,7 +1073,7 @@ function addDynamicPrimitiveObjectAsFormArray<T = Record<string, unknown>>({
 }: {
   defaultValue: DeepPartial<T>;
   metadataItem: IDynamicControlMetadata;
-  formBuilder: FormBuilder;
+  formBuilder: UntypedFormBuilder;
   dynamicForm: DynamicFormGroup<T, T>;
   index: number;
 }) {
@@ -1105,7 +1105,7 @@ function addDynamicTypedObjectAsFormGroup<T = Record<string, unknown>>({
 }: {
   defaultValue: DeepPartial<T>;
   metadataItem: IDynamicControlMetadata;
-  formBuilder: FormBuilder;
+  formBuilder: UntypedFormBuilder;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   rootFormGroup: DynamicFormGroup<any, any> | undefined;
   dynamicFormBuilderOptions: DynamicFormBuilderOptions<T> | undefined;
@@ -1133,7 +1133,7 @@ function addDynamicTypedObjectAsFormGroup<T = Record<string, unknown>>({
       return all;
     }, {});
   const form = formBuilder.group({});
-  form.setParent(rootFormGroup as FormGroup);
+  form.setParent(rootFormGroup as UntypedFormGroup);
   const control = createFormControls({
     classType: metadataItem.classType,
     formBuilder,
@@ -1158,7 +1158,7 @@ function addDynamicPrimitiveObjectAsFormGroup<T = Record<string, unknown>>({
 }: {
   defaultValue: DeepPartial<T>;
   metadataItem: IDynamicControlMetadata;
-  formBuilder: FormBuilder;
+  formBuilder: UntypedFormBuilder;
   dynamicForm: DynamicFormGroup<T, T>;
   index: number;
 }) {
@@ -1186,7 +1186,7 @@ function addDynamicMethodsToRootFormGroup<T = Record<string, unknown>>({
   dynamicForm: DynamicFormGroup<T, T>;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   rootFormGroup: DynamicFormGroup<any, any> | undefined;
-  formBuilder: FormBuilder;
+  formBuilder: UntypedFormBuilder;
 }) {
   dynamicForm.externalErrorsSubject = new BehaviorSubject<ClassValidatorErrors>(
     {}
@@ -1616,7 +1616,7 @@ function subscribeToRootFormGroupValueChanges<T>(
 }
 
 function subscribeToGlobalDynamicFormBuilderOptionsChange<T>(
-  formBuilder: FormBuilder,
+  formBuilder: UntypedFormBuilder,
   rootFormGroup: DynamicFormGroup<T, T>
 ) {
   if (!rootFormGroup.globalDynamicFormBuilderOptionsChangedSubscription) {

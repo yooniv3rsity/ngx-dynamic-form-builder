@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
-import { FormArray } from '@angular/forms';
+import { UntypedFormArray } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DynamicFormBuilder, DynamicFormGroup } from 'ngx-dynamic-form-builder';
 import { Observable, Subject } from 'rxjs';
@@ -54,7 +54,7 @@ export class ProjectPanelStep2Component implements OnDestroy {
     return group?.value?.tasks?.length > 3 ? { maxLength3: true } : null;
   }
   getTasksArray() {
-    return this.form.get('tasks') as FormArray;
+    return this.form.get('tasks') as UntypedFormArray;
   }
   addTask(): void {
     this.getTasksArray().push(this.fb.group({}));

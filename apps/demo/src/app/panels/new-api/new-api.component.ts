@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { AbstractControl, FormArray } from '@angular/forms';
+import { AbstractControl, UntypedFormArray } from '@angular/forms';
 import { marker } from '@ngneat/transloco-keys-manager/marker';
 import { Expose, Type } from 'class-transformer-global-storage';
 import {
@@ -347,7 +347,7 @@ export class NewApiComponent {
   get permissions() {
     return (this.form.get('company') as DynamicFormGroup).controls[
       'permissions'
-    ] as FormArray;
+    ] as UntypedFormArray;
   }
 
   savePermission(index: number, permission: boolean | string) {
@@ -378,7 +378,7 @@ export class NewApiComponent {
   // cabinets
 
   get cabinets() {
-    return this.form.controls['cabinets'] as FormArray;
+    return this.form.controls['cabinets'] as UntypedFormArray;
   }
 
   saveCabinet(index: number, num: number | string) {
@@ -401,7 +401,7 @@ export class NewApiComponent {
   // peopleAges
 
   get peopleAges() {
-    return this.form.controls['peopleAges'] as FormArray;
+    return this.form.controls['peopleAges'] as UntypedFormArray;
   }
 
   savePeopleAge(index: number, peopleAge: PeopleAge) {
@@ -423,7 +423,7 @@ export class NewApiComponent {
   // transports
 
   get transports() {
-    return this.form.controls['transports'] as FormArray;
+    return this.form.controls['transports'] as UntypedFormArray;
   }
 
   saveTransport(index: number, transport: Airplane | Car) {

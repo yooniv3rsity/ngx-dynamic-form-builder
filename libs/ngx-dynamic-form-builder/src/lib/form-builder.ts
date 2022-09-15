@@ -1,4 +1,4 @@
-import { AbstractControlOptions, FormBuilder } from '@angular/forms';
+import { AbstractControlOptions, UntypedFormBuilder } from '@angular/forms';
 import { ClassConstructor } from 'class-transformer-global-storage';
 import { createFormControls } from './lib';
 import {
@@ -6,7 +6,7 @@ import {
   DynamicFormBuilderOptionsKeys,
   DynamicFormGroup,
 } from './types/types';
-export class DynamicFormBuilder extends FormBuilder {
+export class DynamicFormBuilder extends UntypedFormBuilder {
   rootFormGroup<T = Record<string, unknown>>(
     classType: ClassConstructor<T> | null,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
