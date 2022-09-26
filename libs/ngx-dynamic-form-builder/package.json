@@ -1,6 +1,6 @@
 {
   "name": "@yoolabs/ngx-dynamic-form-builder",
-  "version": "2.3.0rc1",
+  "version": "2.3.0rc2",
   "description": "FormBuilder + class-transformer-global-storage + class-validator-multi-lang = dynamic form group builder for Angular12+",
   "keywords": [
     "form-builder",
@@ -42,7 +42,8 @@
   "peerDependencies": {
     "@angular/common": "14.x",
     "@angular/core": "14.x",
-    "class-transformer-global-storage": "0.4.1-1",
+    "@angular/forms": "14.x",
+    "class-transformer-global-storage": "~0.4",
     "class-validator-multi-lang": "0.130.201",
     "lodash.clonedeep": "4.5.0",
     "lodash.mergewith": "4.6.2",
