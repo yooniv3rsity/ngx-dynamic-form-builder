@@ -1,6 +1,6 @@
 {
   "name": "ngx-dynamic-form-builder",
-  "version": "2.3.0rc3",
+  "version": "2.3.0rc4",
   "description": "FormBuilder + class-transformer-global-storage + class-validator-multi-lang = dynamic form group builder for Angular12+",
   "keywords": [
     "form-builder",
@@ -101,7 +101,7 @@
     "@types/validator": "13.7.1",
     "@typescript-eslint/eslint-plugin": "5.33.1",
     "@typescript-eslint/parser": "5.33.1",
-    "class-validator-multi-lang": "0.130.201",
+    "class-validator-multi-lang": "npm:class-validator@^0.13.2",
     "cypress": "9.3.1",
     "cypress-multi-reporters": "1.5.0",
     "eslint": "8.15.0",

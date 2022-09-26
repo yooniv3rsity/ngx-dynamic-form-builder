@@ -12,8 +12,9 @@
 * 2022-09-07 - refactor lib.ts changes, add comments and try to make more transparent what has been changed.
 * 2022-09-15 - migrate to angular 14 (for correct peer deps), document & fix testing setup
 * 2022-09-15 - released as 2.3.0rc1
-* 2022-09-26 - 2.3.0rc2 - update dependencies + peerDependency info
+* 2022-09-26 - 2.3.0rc2 - update dependencies + peerDependency info / class-transformer-global-storage -> @yoolabs/class-transformer@^0.5.1
 * 2022-09-26 - 2.3.0rc3 - fix peerDependency info (class transformer 0.5.x)
+* 2022-09-26 - 2.3.0rc4 - class-validator-multi-lang -> class-validator@^0.13.2
 
 ## Testing
 
