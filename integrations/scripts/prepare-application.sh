@@ -21,6 +21,5 @@ npm pack .
 cd ../
 # on-the-fly installation of created tgz
 npm install --save ./lib/ngx-dynamic-form-builder-0.0.0.tgz --force
-# build production
-npm run build -- --configuration production
+npm run build
 cd ../../
