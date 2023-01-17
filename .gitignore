@@ -45,5 +45,3 @@ cypress/videos*
 cypress/screenshots
 cypress/videos
 cypress/reports
-
-.angular

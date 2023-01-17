@@ -2,36 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [2.3.3](https://github.com/EndyKaufman/ngx-dynamic-form-builder/compare/v2.3.2...v2.3.3) (2022-11-25)
-
-
-### Bug Fixes
-
-* disable updateBuildableProjectDepsInPackageJson in angular lib ([4a9cf40](https://github.com/EndyKaufman/ngx-dynamic-form-builder/commit/4a9cf40685731389316bb47ee036f9dd7bde140d))
-
-### [2.3.2](https://github.com/EndyKaufman/ngx-dynamic-form-builder/compare/v2.3.1...v2.3.2) (2022-11-25)
-
-### Bug Fixes
-
-- deleted angular dependencies 🙂 ([#213](https://github.com/EndyKaufman/ngx-dynamic-form-builder/issues/213)) ([b921f06](https://github.com/EndyKaufman/ngx-dynamic-form-builder/commit/b921f06f2eb92eb9aefa861951d65596b8f78285))
-
-### [2.3.1](https://github.com/EndyKaufman/ngx-dynamic-form-builder/compare/v2.3.0...v2.3.1) (2022-11-25)
-
-### Bug Fixes
-
-- added support work in angular 15 and >=12 ([#213](https://github.com/EndyKaufman/ngx-dynamic-form-builder/issues/213)) ([15c2f02](https://github.com/EndyKaufman/ngx-dynamic-form-builder/commit/15c2f0285e042dceff774968c31a8b7414bff315))
-
-## [2.3.0](https://github.com/EndyKaufman/ngx-dynamic-form-builder/compare/v2.2.2...v2.3.0) (2022-11-25)
-
-### Features
-
-- update deps, angular from 13 to 15, nx from 13 to 15 ([e682987](https://github.com/EndyKaufman/ngx-dynamic-form-builder/commit/e682987b8e41006a554a2b9de79585e1cb3081f8))
-
 ### [2.2.2](https://github.com/EndyKaufman/ngx-dynamic-form-builder/compare/v2.2.1...v2.2.2) (2022-06-26)
 
+
 ### Bug Fixes
 
-- lock versions of deps ([f61029b](https://github.com/EndyKaufman/ngx-dynamic-form-builder/commit/f61029b283b84f5b7a46214b8db97bc1b895e4c7))
+* lock versions of deps ([f61029b](https://github.com/EndyKaufman/ngx-dynamic-form-builder/commit/f61029b283b84f5b7a46214b8db97bc1b895e4c7))
 
 ### [2.2.1](https://github.com/EndyKaufman/ngx-dynamic-form-builder/compare/v2.2.0...v2.2.1) (2022-02-19)
 

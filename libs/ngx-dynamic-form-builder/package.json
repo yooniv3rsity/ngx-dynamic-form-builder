@@ -1,7 +1,7 @@
 {
   "name": "@yoolabs/ngx-dynamic-form-builder",
-  "version": "2.3.3",
-  "description": "FormBuilder + class-transformer-global-storage + class-validator-multi-lang = dynamic form group builder for Angular",
+  "version": "2.3.0rc4",
+  "description": "FormBuilder + class-transformer-global-storage + class-validator-multi-lang = dynamic form group builder for Angular12+",
   "keywords": [
     "form-builder",
     "class-transformer",
@@ -21,9 +21,7 @@
     "builder",
     "formarray",
     "angular",
-    "angular12",
-    "angular13",
-    "angular14"
+    "angular12"
   ],
   "license": "MIT",
   "author": "Jannik Mewes, EndyKaufman <admin@site15.ru>",
@@ -42,33 +40,26 @@
     }
   ],
   "peerDependencies": {
-	"class-transformer-global-storage": "~0.5",
-	"class-validator-multi-lang": ">=0.130.201",
-    "lodash.clonedeep": ">=4.5.0",
-    "lodash.mergewith": ">=4.6.2",
-    "lodash.set": ">=4.3.2",
-    "lodash.get": ">=4.4.2",
-    "validator": ">=13.7.0",
-    "@types/validator": ">=13.7.1",
-    "reflect-metadata": ">=0.1.13"
+    "@angular/common": "14.x",
+    "@angular/core": "14.x",
+    "@angular/forms": "14.x",
+    "class-transformer-global-storage": "~0.5",
+    "class-validator-multi-lang": "~0.13.1",
+    "lodash.clonedeep": "4.5.0",
+    "lodash.mergewith": "4.6.2",
+    "lodash.set": "4.3.2",
+    "lodash.get": "4.4.2",
+    "validator": "13.7.0",
+    "@types/validator": "13.7.1",
+    "reflect-metadata": "0.1.13"
   },
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "2.0.0"
   },
   "i18n": [
     {
       "scope": "ngx-dynamic-form-builder",
       "path": "src/i18n",
-      "strategy": "join"
-    },
-    {
-      "scope": "ngx-dynamic-form-builder-getText",
-      "path": "src/i18n/getText",
-      "strategy": "join"
-    },
-    {
-      "scope": "ngx-dynamic-form-builder-dictionary",
-      "path": "src/i18n/dictionary",
       "strategy": "join"
     }
   ]

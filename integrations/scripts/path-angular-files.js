@@ -16,18 +16,14 @@ readFile(angularJson, function (err, content) {
   });
 });
 
-const polyfillsTs = join(__dirname, '..', 'app', 'src', 'main.ts');
+const polyfillsTs = join(__dirname, '..', 'app', 'src', 'polyfills.ts');
 readFile(polyfillsTs, function (err, content) {
-  if (!err) {
-    const polyfillsLines = content.toString().split('\n');
-    writeFile(
-      polyfillsTs,
-      [`import 'reflect-metadata';`, ...polyfillsLines].join('\n'),
-      function (err) {
-        if (err) throw err;
-      }
-    );
-  }
+  if (err) throw err;
+  const polyfillsLines = content.toString().split('\n');
+  polyfillsLines.push(`import 'reflect-metadata';`);
+  writeFile(polyfillsTs, polyfillsLines.join('\n'), function (err) {
+    if (err) throw err;
+  });
 });
 
 const tsconfigJson = join(__dirname, '..', 'app', 'tsconfig.json');
@@ -51,12 +47,11 @@ readFile(tsconfigJson, function (err, content) {
 
 const browserslistrc = join(__dirname, '..', 'app', '.browserslistrc');
 readFile(browserslistrc, function (err, content) {
-  if (!err) {
-    const browserslistrcLines = content.toString().split('\n');
-    browserslistrcLines.push(`not ios_saf 15.2-15.3`);
-    browserslistrcLines.push(`not safari 15.2-15.3`);
-    writeFile(browserslistrc, browserslistrcLines.join('\n'), function (err) {
-      if (err) throw err;
-    });
-  }
+  if (err) throw err;
+  const browserslistrcLines = content.toString().split('\n');
+  browserslistrcLines.push(`not ios_saf 15.2-15.3`);
+  browserslistrcLines.push(`not safari 15.2-15.3`);
+  writeFile(browserslistrc, browserslistrcLines.join('\n'), function (err) {
+    if (err) throw err;
+  });
 });

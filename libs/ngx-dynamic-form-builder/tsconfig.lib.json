@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "target": "ES2022",
+    "target": "es2020",
     "module": "es2015",
     "moduleResolution": "node",
     "declaration": true,
@@ -14,14 +14,8 @@
     "importHelpers": true,
     "declarationMap": true,
     "types": ["node"],
-    "lib": ["dom", "es2015"],
-    "useDefineForClassFields": false
+    "lib": ["dom", "es2015"]
   },
-  "exclude": [
-    "src/test-setup.ts",
-    "**/*.spec.ts",
-    "**/*.test.ts",
-    "jest.config.ts"
-  ],
+  "exclude": ["src/test-setup.ts", "**/*.spec.ts", "**/*.test.ts"],
   "include": ["**/*.ts"]
 }

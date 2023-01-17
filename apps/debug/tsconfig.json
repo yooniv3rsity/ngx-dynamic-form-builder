@@ -14,8 +14,6 @@
     }
   ],
   "compilerOptions": {
-    "target": "es2022",
-    "useDefineForClassFields": false,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
@@ -25,7 +23,6 @@
     "target": "es2020"
   },
   "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true

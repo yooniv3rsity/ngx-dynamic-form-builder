@@ -1,6 +1,4 @@
 {
-  "name": "demo",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/demo/src",
   "prefix": "ngx-dynamic-form-builder",
@@ -11,14 +9,7 @@
       "options": {
         "allowedCommonJsDependencies": [
           "class-validator-multi-lang",
-          "validator",
-          "lodash.set",
-          "lodash.mergewith",
-          "lodash.clonedeep",
-          "lodash.get",
-          "@ngneat/transloco-keys-manager/marker",
-          "@ngneat/transloco",
-          "moment"
+          "validator"
         ],
         "outputPath": "dist/apps/demo",
         "index": "apps/demo/src/index.html",
@@ -109,9 +100,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/apps/demo"],
+      "outputs": ["coverage/apps/demo"],
       "options": {
-        "jestConfig": "apps/demo/jest.config.ts",
+        "jestConfig": "apps/demo/jest.config.js",
         "passWithNoTests": true
       }
     }
