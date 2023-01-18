@@ -15,6 +15,9 @@
 * 2022-09-26 - 2.3.0rc2 - update dependencies + peerDependency info / class-transformer-global-storage -> @yoolabs/class-transformer@^0.5.1
 * 2022-09-26 - 2.3.0rc3 - fix peerDependency info (class transformer 0.5.x)
 * 2022-09-26 - 2.3.0rc4 - class-validator-multi-lang -> class-validator@^0.13.2
+* 2023-01-17 - 2.3.3 - buggy release, tried to merge in master of base repo. (Unpublished again)
+* 2023-01-18 - custom migration to ng15. Note install needs to be executed with --force due to flex-layout@14
+* 2023-01-18 - 2.3.1 - 
 
 ## Testing
 

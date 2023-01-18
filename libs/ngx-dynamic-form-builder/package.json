@@ -40,9 +40,9 @@
     }
   ],
   "peerDependencies": {
-    "@angular/common": "14.x",
-    "@angular/core": "14.x",
-    "@angular/forms": "14.x",
+    "@angular/common": ">=14",
+    "@angular/core": ">=14",
+    "@angular/forms": ">=14",
     "class-transformer-global-storage": "~0.5",
     "class-validator-multi-lang": "~0.13.1",
     "lodash.clonedeep": "4.5.0",
