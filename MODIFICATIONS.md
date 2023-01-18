@@ -18,6 +18,7 @@
 * 2023-01-17 - 2.3.3 - buggy release, tried to merge in master of base repo. (Unpublished again)
 * 2023-01-18 - custom migration to ng15. Note install needs to be executed with --force due to flex-layout@14
 * 2023-01-18 - update code to work with new class-transformer ("instance" instead of "class")
+* 2023-01-18 - 2.3.1rc1 - release - note that cypress tests fail because lib:build errors. Custom unit tests should pass though.
 
 ## Testing
 
