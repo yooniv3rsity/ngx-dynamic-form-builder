@@ -9,8 +9,8 @@ import {
 } from '@angular/forms';
 import {
   ClassConstructor,
-  classToPlain,
-  plainToClass,
+  instanceToPlain,
+  plainToInstance,
 } from 'class-transformer-global-storage';
 import {
   validate,
@@ -156,7 +156,7 @@ export function setValuesForControls<T = Record<string, unknown>>(
         [metadata.propertyName]: isArray ? [value] : value,
       };
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const parentJson: any = plainToClass(
+      const parentJson: any = plainToInstance(
         parentClassType,
         parentObject,
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -167,7 +167,7 @@ export function setValuesForControls<T = Record<string, unknown>>(
         ? parentJson[metadata.propertyName][0]
         : parentJson[metadata.propertyName];
     } else {
-      value = plainToClass(
+      value = plainToInstance(
         metadata.classType,
         value,
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -655,7 +655,7 @@ function getMetadata(
       prevMultiTypes.length !== multiTypes.length
     ) {
       prevMultiTypes = multiTypes;
-      plainToClass(classType, {}, classTransformOptions);
+      plainToInstance(classType, {}, classTransformOptions);
       multiTypes = Array.from(classTransformerMetadataStorage._typeMetadatas)
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .map((meta: any) =>
@@ -682,7 +682,7 @@ function getMetadata(
         .reduce((all: any, cur: any) => [...all, ...cur], []);
       (multiTypes || []).forEach((multiType) =>
         multiType.types.forEach((type: { name: string }) =>
-          plainToClass(
+          plainToInstance(
             multiType.classType,
             { [multiType.propertyName]: { [multiType.property]: type.name } },
             classTransformOptions
@@ -702,7 +702,7 @@ function getMetadata(
       prevMultiTypes.length !== multiTypes.length
     ) {
       prevMultiTypes = multiTypes;
-      plainToClass(classType, {}, classTransformOptions);
+      plainToInstance(classType, {}, classTransformOptions);
       multiTypes = Array.from(classTransformerMetadataStorage._excludeMetadatas)
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .map((meta: any) =>
@@ -727,7 +727,7 @@ function getMetadata(
         .reduce((all: any, cur: any) => [...all, ...cur], []);
       (multiTypes || []).forEach((multiType) =>
         multiType.types.forEach((type: { name: string }) =>
-          plainToClass(
+          plainToInstance(
             multiType.classType,
             { [multiType.propertyName]: { [multiType.property]: type.name } },
             classTransformOptions
@@ -1210,7 +1210,7 @@ function addDynamicMethodsToRootFormGroup<T = Record<string, unknown>>({
     if (!dynamicForm.classTransformMetadata.classType) {
       throw new Error('classType not set');
     }
-    return plainToClass(
+    return plainToInstance(
       dynamicForm.classTransformMetadata.classType,
       {
         ...dynamicForm.value,
@@ -1224,7 +1224,7 @@ function addDynamicMethodsToRootFormGroup<T = Record<string, unknown>>({
       formBuilder,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       dynamicForm as any,
-      classToPlain(
+      instanceToPlain(
         object,
         dynamicForm.dynamicFormBuilderOptions.classTransformToPlainOptions
       )
@@ -1435,7 +1435,7 @@ function setDynamicControlValue<T>(
   lodashSet(rootValue, controlPath, control.value);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const object: any = plainToClass(
+  const object: any = plainToInstance(
     rootFormGroup.classTransformMetadata.classType,
     rootValue,
     rootFormGroup.dynamicFormBuilderOptions.classTransformOptions

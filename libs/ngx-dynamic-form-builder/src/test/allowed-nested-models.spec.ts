@@ -1,4 +1,4 @@
-import { Exclude, Expose, Type, Transform, classToClass, classToPlain, plainToClass, } from 'class-transformer-global-storage';
+import { Exclude, Expose, Type, Transform, instanceToInstance, instanceToPlain, plainToInstance, } from 'class-transformer-global-storage';
 import { DynamicFormBuilder, getGlobal } from '..';
 import { getMetadataStorage } from 'class-validator-multi-lang';
   

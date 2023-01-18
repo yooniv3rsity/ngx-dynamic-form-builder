@@ -384,7 +384,7 @@ For correct parse metadata, need remove `compilerOptions.downlevelIteration` and
 
 ### Features
 
-- **dynamic-form-group:** Added method classToClass and plainToClass to override and customize transformation algorithm ([734f9ea](https://github.com/EndyKaufman/ngx-dynamic-form-builder/commit/734f9ea))
+- **dynamic-form-group:** Added method instanceToInstance and plainToInstance to override and customize transformation algorithm ([734f9ea](https://github.com/EndyKaufman/ngx-dynamic-form-builder/commit/734f9ea))
 
 <a name="0.1.0"></a>
 
